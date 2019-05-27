@@ -301,7 +301,9 @@ void CHL2MP_Player::Spawn(void)
 
 		RemoveEffects( EF_NODRAW );
 		
-		GiveDefaultItems();
+		//GiveDefaultItems();
+		EquipSuit();
+		GiveNamedItem( "weapon_crowbar" );
 	}
 
 	SetNumAnimOverlays( 3 );

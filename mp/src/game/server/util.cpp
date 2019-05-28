@@ -659,6 +659,53 @@ CBasePlayer *UTIL_GetLocalPlayer( void )
 	return UTIL_PlayerByIndex( 1 );
 }
 
+CBasePlayer *UTIL_GetNearestPlayer( const Vector &origin )
+{
+	float distToNearest = 99999999999999999999999999999999999999.0f;
+	CBasePlayer *pNearest = NULL;
+
+	for (int i = 1; i <= gpGlobals->maxClients; i++ )
+	{
+		CBasePlayer *pPlayer = UTIL_PlayerByIndex( i );
+		if ( !pPlayer )
+			continue;
+
+		float flDist = (pPlayer->GetAbsOrigin() - origin).LengthSqr();
+		if ( flDist < distToNearest )
+
+		{
+			pNearest = pPlayer;
+			distToNearest = flDist;
+
+		}
+	}
+
+
+	return pNearest;
+}
+
+CBasePlayer *UTIL_GetNearestVisiblePlayer( CBaseEntity *pLooker, int mask )
+{															
+	float distToNearest = 99999999999999999999999999999999999999.0f;
+	CBasePlayer *pNearest = NULL;
+
+	for (int i = 1; i <= gpGlobals->maxClients; i++ )
+	{
+		CBasePlayer *pPlayer = UTIL_PlayerByIndex( i );
+		if ( !pPlayer )
+			continue;
+
+		float flDist = (pPlayer->GetAbsOrigin() - pLooker->GetAbsOrigin()).LengthSqr();
+		if ( flDist < distToNearest && pLooker->FVisible( pPlayer, mask ) )
+		{
+			pNearest = pPlayer;
+			distToNearest = flDist;
+		}	
+	}
+
+	return pNearest; 
+}
+
 //
 // Get the local player on a listen server - this is for multiplayer use only
 // 

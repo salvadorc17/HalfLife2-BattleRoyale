@@ -1027,7 +1027,7 @@ void CHL2MP_Player::CheatImpulseCommands( int iImpulse )
 			{
 				if( sv_cheats->GetBool() )
 				{
-					GiveAllItems();
+					//GiveAllItems();
 				}
 			}
 			break;

@@ -138,7 +138,7 @@ CAI_Network::~CAI_Network()
 		for ( int node = 0; node < m_iNumNodes; node++ )
 		{
 			CAI_Node *pNode = m_pAInode[node];
-			//Assert( pNode && pNode->m_iID == node );
+			Assert( pNode && pNode->m_iID == node );
 
 			for ( int link = 0; link < pNode->NumLinks(); link++ )
 			{
@@ -146,11 +146,11 @@ CAI_Network::~CAI_Network()
 				if ( pLink )
 				{
 					int destID = pLink->DestNodeID( node );
-					//Assert( destID > node && destID < m_iNumNodes );
+					Assert( destID > node && destID < m_iNumNodes );
 					if ( destID > node && destID < m_iNumNodes )
 					{
 						CAI_Node *pDestNode = m_pAInode[destID];
-						//Assert( pDestNode );
+						Assert( pDestNode );
 
 						for ( int destLink = 0; destLink < pDestNode->NumLinks(); destLink++ )
 						{

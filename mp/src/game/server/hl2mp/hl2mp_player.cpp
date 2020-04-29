@@ -301,9 +301,7 @@ void CHL2MP_Player::Spawn(void)
 
 		RemoveEffects( EF_NODRAW );
 		
-		//GiveDefaultItems();
-		EquipSuit();
-		GiveNamedItem( "weapon_crowbar" );
+		GiveDefaultItems();
 	}
 
 	SetNumAnimOverlays( 3 );
@@ -1027,7 +1025,7 @@ void CHL2MP_Player::CheatImpulseCommands( int iImpulse )
 			{
 				if( sv_cheats->GetBool() )
 				{
-					//GiveAllItems();
+					GiveAllItems();
 				}
 			}
 			break;

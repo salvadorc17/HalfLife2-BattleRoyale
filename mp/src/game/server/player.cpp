@@ -2134,15 +2134,15 @@ void CBasePlayer::PlayerDeathThink(void)
 	// wait for all buttons released
 	if (m_lifeState == LIFE_DEAD)
 	{
-		//if (fAnyButtonDown)
-			//return;
+		if (fAnyButtonDown)
+			return;
 
-		//if ( g_pGameRules->FPlayerCanRespawn( this ) )
-		//{
-			//m_lifeState = LIFE_RESPAWNABLE;
-		//}
+		if ( g_pGameRules->FPlayerCanRespawn( this ) )
+		{
+			m_lifeState = LIFE_RESPAWNABLE;
+		}
 		
-		//return;
+		return;
 	}
 
 // if the player has been dead for one second longer than allowed by forcerespawn, 
@@ -2164,7 +2164,7 @@ void CBasePlayer::PlayerDeathThink(void)
 
 	//Msg( "Respawn\n");
 
-	//respawn( this, !IsObserver() );// don't copy a corpse if we're in deathcam.
+	respawn( this, !IsObserver() );// don't copy a corpse if we're in deathcam.
 	SetNextThink( TICK_NEVER_THINK );
 }
 
